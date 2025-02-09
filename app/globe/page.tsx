@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic"
 import { Suspense } from "react"
 import Stars from "../components/stars"
+import "../globals.css"
 
 const GlobeComponent = dynamic(() => import("../components/globe"), { ssr: false })
 

@@ -8,13 +8,15 @@ import { useLoader } from "@react-three/fiber"
 import { startGame, getGameState, updateMutation } from '../services/gameService'
 import dynamic from 'next/dynamic'
 import BackgroundMusic from './BackgroundMusic'
+import { useRouter } from 'next/navigation'
+import "../globals.css"
 
 const points = [
   {
     position: [0.5, 0.8, -0.5],
     name: "Forêt Amazonienne",
-    description: "En 2040, la déforestation massive a exposé d'anciens sites d'extraction d'uranium, créant une zone de contamination inattendue.",
-    crazyStory: "Les scientifiques ont découvert une nouvelle espèce de singes bioluminescents qui utilisent leur lueur radioactive pour communiquer la nuit. Ces 'Singes Lucioles' auraient développé la capacité de faire pousser des plantes en les touchant, créant des jardins phosphorescents dans la canopée.",
+    description: "En 2040, une faille dimensionnelle s'est ouverte dans la forêt amazonienne, libérant des gorilles radioactifs capables de voyager entre les dimensions.",
+    crazyStory: "Ces 'Gorilles Dimensionnels' ont développé la capacité unique de se nourrir des feux de forêt, les absorbant littéralement dans leurs corps. En dévorant les flammes, ils créent des portails temporels qui révèlent des versions alternatives de l'Amazonie. Plus fascinant encore, ces primates ont commencé à 'manger' les dimensions elles-mêmes, fusionnant différentes réalités et créant des poches de jungle où les lois de la physique n'ont plus cours. Les scientifiques ont observé des arbres qui poussent à l'envers, des cascades qui remontent vers le ciel, et des zones où le temps s'écoule en spirale.",
     imageUrl: "/mutants/mutan_monkey.png",
     iconUrl: "/mutants/icon/icon_gorilla.png",
     color: "red",
@@ -23,8 +25,8 @@ const points = [
   {
     position: [-0.8, -0.2, 0.8],
     name: "Forêt du Bassin du Congo", 
-    description: "Une horde de chevaux mutants radioactifs s'est développée dans la région, leurs crinières brillant d'une lueur surnaturelle en 2040.",
-    crazyStory: "Les chevaux ont développé une intelligence supérieure suite à leur exposition aux radiations. Leurs crinières émettent une lumière phosphorescente qui pulse au rythme de leurs pensées. Les scientifiques affirment qu'ils communiquent par ces signaux lumineux et résolvent des équations complexes.",
+    description: "Une horde de chevaux mutants radioactifs s'est développée dans la région, leurs crinières brillant d'une lueur surnaturelle en 2040. Une guerre éclate entre les chevaux normaux et radioactifs pour le contrôle du lait paternel.",
+    crazyStory: "Les chevaux ont développé une intelligence supérieure suite à leur exposition aux radiations. Leurs crinières émettent une lumière phosphorescente qui pulse au rythme de leurs pensées. Les scientifiques affirment qu'ils communiquent par ces signaux lumineux et résolvent des équations complexes. Une bataille épique fait rage entre les chevaux normaux et les mutants, tous déterminés à obtenir le précieux lait du père, une substance mystérieuse aux propriétés inconnues.",
     imageUrl: "/mutants/mutan_horse.png",
     iconUrl: "/mutants/icon/icon_horse.png",
     color: "green",
@@ -349,6 +351,7 @@ function Globe() {
   const [highlightedMutant, setHighlightedMutant] = useState<string | null>(null)
   const [showSolutions, setShowSolutions] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const handleStartGame = async () => {
     try {
@@ -466,7 +469,7 @@ function Globe() {
       <div className="fixed top-8 right-8 z-20">
         <button 
           className="relative group bg-red-900/60 hover:bg-red-800/80 p-4 rounded-xl border-2 border-red-500/50 hover:border-red-400 transition-all duration-300 shadow-lg hover:shadow-red-500/20"
-          onClick={() => setShowSolutions(true)}
+          onClick={() => router.push('/alert')}
         >
           <div className="absolute -top-1 -right-1 w-3 h-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -627,51 +630,6 @@ function Globe() {
           </>
         )}
       </div>
-
-      {/* Modale des solutions */}
-      {showSolutions && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="bg-gray-900/90 rounded-2xl p-8 max-w-2xl w-full mx-4 border border-red-500/30">
-            <div className="flex justify-between items-start mb-6">
-              <h2 className="text-3xl font-black text-red-400">SOLUTIONS D'URGENCE - 2040</h2>
-              <button 
-                onClick={() => setShowSolutions(false)}
-                className="text-gray-400 hover:text-gray-200"
-              >
-                ✕
-              </button>
-            </div>
-            
-            <div className="space-y-6 text-gray-300">
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-red-300">Actions Immédiates Requises :</h3>
-                <ul className="list-disc ml-6 space-y-3">
-                  <li>Mise en place immédiate de filtres de décontamination dans les zones touchées</li>
-                  <li>Développement de technologies de neutralisation des radiations</li>
-                  <li>Création de sanctuaires protégés pour les espèces non-mutées</li>
-                  <li>Programme de recherche sur la réversion des mutations</li>
-                </ul>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-yellow-300">Prévention pour le Passé :</h3>
-                <ul className="list-disc ml-6 space-y-3">
-                  <li>Transition immédiate vers les énergies renouvelables</li>
-                  <li>Renforcement des normes de sécurité nucléaire</li>
-                  <li>Protection accrue des écosystèmes naturels</li>
-                  <li>Éducation mondiale sur les risques de la pollution radioactive</li>
-                </ul>
-              </div>
-
-              <div className="mt-8 p-4 bg-red-900/20 rounded-lg border border-red-500/30">
-                <p className="text-red-300 font-mono text-sm">
-                  ⚠️ AVERTISSEMENT : Ces informations sont transmises depuis 2040 pour prévenir cette timeline. Agissez maintenant.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import os
 import threading
 import webbrowser
 import time
@@ -11,15 +12,23 @@ def open_frontend():
 
 def main():
     try:
-        # Lancer le frontend en arrière-plan
-        frontend_thread = threading.Thread(target=open_frontend)
-        frontend_thread.daemon = True
-        frontend_thread.start()
-
-        # Lancer le serveur FastAPI
-        subprocess.run(["uvicorn", "main:app", "--reload"], check=True)
-    except KeyboardInterrupt:
-        sys.exit(0)
+        # Assurez-vous d'être dans le bon répertoire
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        
+        # Utilisez le chemin Python actuel pour exécuter uvicorn
+        subprocess.run([
+            sys.executable, 
+            "-m", 
+            "uvicorn",
+            "main:app",
+            "--reload"
+        ], check=True)
+    except FileNotFoundError:
+        print("Erreur: uvicorn n'est pas installé. Installez-le avec 'pip install uvicorn fastapi'")
+        sys.exit(1)
+    except subprocess.CalledProcessError as e:
+        print(f"Erreur lors du démarrage du serveur: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main() 

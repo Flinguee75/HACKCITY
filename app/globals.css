@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --primary: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96.1%;
+  }
+
+  .dark {
+    --primary: 210 40% 98%;
+    --secondary: 222.2 47.4% 11.2%;
+  }
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -22,4 +34,6 @@ body {
 .animate-progress {
   animation: progress 0.8s ease-out forwards;
 }
+
+/* Ajoutez ici les styles spécifiques de votre collègue */
 
