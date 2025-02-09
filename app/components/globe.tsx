@@ -319,7 +319,7 @@ function GlobeObject({ setActivePoint, activePoint, highlightedMutant, setHighli
                 depthWrite={false}
                 color={point.color}
               />
-            </mesh>
+          </mesh>
           </Billboard>
         </group>
       ))}
@@ -468,7 +468,7 @@ function Globe() {
         </button>
       </div>
 
-      <div className="w-full h-full">
+    <div className="w-full h-full">
         <Canvas 
           camera={{ 
             position: [0, 0, 3.2], 
@@ -476,8 +476,8 @@ function Globe() {
           }}
         >
           
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
           <GlobeObject 
             setActivePoint={setActivePoint} 
             activePoint={activePoint}
@@ -489,7 +489,7 @@ function Globe() {
             minPolarAngle={Math.PI / 2.2}
             maxPolarAngle={Math.PI / 1.8}
           />
-        </Canvas>
+      </Canvas>
       </div>
 
       {/* Bulle d'information */}
