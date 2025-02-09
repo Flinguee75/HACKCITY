@@ -7,7 +7,7 @@ import * as THREE from "three"
 import { useLoader } from "@react-three/fiber"
 import { startGame, getGameState, updateMutation } from '../services/gameService'
 import dynamic from 'next/dynamic'
-import { playSound, playBackgroundMusic, stopBackgroundMusic } from '../services/soundService'
+import BackgroundMusic from './BackgroundMusic'
 
 const points = [
   {
@@ -223,10 +223,7 @@ function GlobeObject({ setActivePoint, activePoint, highlightedMutant, setHighli
   })
 
   useEffect(() => {
-    playBackgroundMusic();
-
     return () => {
-      stopBackgroundMusic();
     };
   }, []);
 
@@ -368,15 +365,13 @@ function Globe() {
   }
 
   useEffect(() => {
-    playBackgroundMusic();
-
     return () => {
-      stopBackgroundMusic();
     };
   }, []);
 
   return (
     <div className="relative w-full h-full">
+      <BackgroundMusic />
       {/* Panneau latéral gauche */}
       <div className="fixed left-8 top-1/2 -translate-y-1/2 bg-black/90 rounded-2xl shadow-xl p-8 w-[350px] border border-gray-800 z-20">
         <div className="relative mb-6">

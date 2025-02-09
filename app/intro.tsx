@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import BackgroundMusic from './components/BackgroundMusic'
 
 export default function Intro() {
   const [isReady, setIsReady] = useState(false)
@@ -13,6 +14,7 @@ export default function Intro() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-900/20 via-black to-black" />
       
       <div className="relative z-10 max-w-4xl mx-auto p-8">
+        <BackgroundMusic onReady={() => setIsReady(true)} />
         {/* Logo ou Titre */}
         <motion.h1 
           initial={{ opacity: 0, y: -50 }}
