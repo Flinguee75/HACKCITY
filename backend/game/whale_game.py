@@ -89,7 +89,8 @@ pollution_overlay = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGHT))
 pollution_overlay.fill((0, 0, 0))  # Black overlay for ocean
 
 # Move font loading outside the game loop (near the top with other initializations)
-font = pygame.font.Font('assets/pixel_font.ttf', 36)
+font = pygame.font.Font(os.path.join(assets_dir, 'pixel_font.ttf'), 36)
+
 
 # After pygame.init(), add sound loading
 game_over_sound = pygame.mixer.Sound(os.path.join(assets_dir, 'gameover.mp3'))
@@ -211,19 +212,22 @@ def show_start_screen():
     screen.blit(overlay, (0, 0))
     
     # Render title text
-    title_font = pygame.font.Font('assets/pixel_font.ttf', 72)
+    title_font = pygame.font.Font(os.path.join(assets_dir, 'pixel_font.ttf'), 72)
     title_text = title_font.render('La Baleine Nettoyeuse', True, (255, 255, 255))
     title_rect = title_text.get_rect(center=(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 - 50))
     
+
     # Render instructions
-    instructions_font = pygame.font.Font('assets/pixel_font.ttf', 36)
+    instructions_font = pygame.font.Font(os.path.join(assets_dir, 'pixel_font.ttf'), 36)
     instructions_text = instructions_font.render('Appuyez sur ESPACE pour commencer', True, (255, 255, 255))
     instructions_rect = instructions_text.get_rect(center=(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 50))
     
+
     # Load control images without scaling
-    wasd_image = pygame.image.load('assets/wasd.png')  # Load original size
-    arrows_image = pygame.image.load('assets/arrows.png')  # Load original size
+    wasd_image = pygame.image.load(os.path.join(assets_dir, 'wasd.png'))  # Load original size
+    arrows_image = pygame.image.load(os.path.join(assets_dir, 'arrows.png'))  # Load original size
     
+
     # Position control images side by side
     wasd_rect = wasd_image.get_rect(center=(WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2 + 120))
     arrows_rect = arrows_image.get_rect(center=(WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2 + 120))
