@@ -7,6 +7,7 @@ import * as THREE from "three"
 import { useLoader } from "@react-three/fiber"
 import { startGame, getGameState, updateMutation } from '../services/gameService'
 import dynamic from 'next/dynamic'
+import { playSound, playBackgroundMusic, stopBackgroundMusic } from '../services/soundService'
 
 const points = [
   {
@@ -221,6 +222,14 @@ function GlobeObject({ setActivePoint, activePoint, highlightedMutant, setHighli
     })
   })
 
+  useEffect(() => {
+    playBackgroundMusic();
+
+    return () => {
+      stopBackgroundMusic();
+    };
+  }, []);
+
   return (
     <group>
       {/* Une seule comète suffit puisqu'elles sont rares */}
@@ -357,6 +366,14 @@ function Globe() {
         console.error('Erreur lors du démarrage du jeu:', error);
     }
   }
+
+  useEffect(() => {
+    playBackgroundMusic();
+
+    return () => {
+      stopBackgroundMusic();
+    };
+  }, []);
 
   return (
     <div className="relative w-full h-full">
@@ -588,6 +605,7 @@ function Globe() {
                   const result = await startGame(gameType);
                   if (result.status === "started") {
                     console.log(`Mini-jeu ${gameType} lancé !`);
+                    playSound('splash');
                   }
                 } catch (error) {
                   console.error("Erreur détaillée:", error);
