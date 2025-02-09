@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import BackgroundMusic from './components/BackgroundMusic.tsx'
+import BackgroundMusic from './components/BackgroundMusic'
 
 export default function Intro() {
   const [isReady, setIsReady] = useState(false)
