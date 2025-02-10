@@ -15,7 +15,6 @@ sys.path.append(parent_dir)
 assets_dir = os.path.join(os.path.dirname(__file__), "assets")
  
 
-from base_game import BaseGame
 
 # Game Constants
 SCREEN_WIDTH = 800

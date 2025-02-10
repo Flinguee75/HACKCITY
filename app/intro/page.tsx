@@ -101,7 +101,7 @@ const dialogues = [
   }
 ]
 
-export default function IntroPage() {
+export default function IntroPage({ onComplete }) {
   const [dialogueIndex, setDialogueIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(true)
   const [displayedText, setDisplayedText] = useState("")
@@ -131,9 +131,10 @@ export default function IntroPage() {
     if (!isTyping) {
       if (dialogueIndex < dialogues.length - 1) {
         setDialogueIndex(prev => prev + 1)
+      } else {
+        onComplete()
       }
     } else {
-      // Si on clique pendant l'animation, on affiche tout le texte
       setDisplayedText(currentDialogue.text)
       setIsTyping(false)
     }

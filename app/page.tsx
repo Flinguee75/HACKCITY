@@ -4,6 +4,7 @@ import { useState } from "react"
 import { AnimatePresence } from "framer-motion"
 import { LoadingBar } from "@/components/LoadingBar"
 import IntroSound from "@/components/IntroSound"
+import IntroPage from './intro/page'
 import { redirect } from "next/navigation"
 
 export default function HomePage() {
@@ -27,7 +28,7 @@ export default function HomePage() {
         {showIntro && (
           <div className="w-full h-screen">
             <IntroSound />
-            {/* Autres éléments de l'intro */}
+            <IntroPage onComplete={handleIntroComplete} />
           </div>
         )}
         

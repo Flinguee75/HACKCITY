@@ -1,13 +1,14 @@
+import pygame
+import os
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import pygame
 import json
 import threading
 
 # Import des jeux
-from game.gorilla_game import GorillaGame
-from game.horse_game import HorseGame
-from game.whale_game import WhaleGame
+# from game.gorilla_game import GorillaGame
+
 
 app = FastAPI()
 

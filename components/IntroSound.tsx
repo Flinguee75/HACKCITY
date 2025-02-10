@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 const IntroSound = () => {
   useEffect(() => {
     const sound = new Howl({
-      src: ['/path/to/your/sound.mp3'],
+      src: ['sounds/background.mp3'],
       autoplay: true,
       volume: 1.0,
       onplayerror: () => {
+
         console.log('Erreur de lecture du son');
         // Tentative de reprise de la lecture
         sound.once('unlock', () => {
